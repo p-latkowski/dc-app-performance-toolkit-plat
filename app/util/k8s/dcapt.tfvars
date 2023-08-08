@@ -417,10 +417,10 @@ crowd_db_snapshot_build_number = "1892"
 crowd_installation_timeout = 20
 
 # Crowd instance resource configuration
-crowd_cpu      = "2"
-crowd_mem      = "3Gi"
-crowd_min_heap = "1024m"
-crowd_max_heap = "1024m"
+crowd_cpu      = "4"
+crowd_mem      = "8Gi"
+crowd_min_heap = "2048m"
+crowd_max_heap = "2048m"
 
 # Storage
 crowd_local_home_size  = "10Gi"
