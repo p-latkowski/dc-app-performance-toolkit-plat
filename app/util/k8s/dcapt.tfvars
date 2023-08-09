@@ -386,7 +386,7 @@ crowd_license = "crowd-license"
 crowd_replica_count = 1
 
 # Supported versions by DCAPT: https://github.com/atlassian/dc-app-performance-toolkit#supported-versions
-crowd_version_tag = "5.1.3"
+crowd_version_tag = "5.1.4"
 
 # Dataset Restore
 
@@ -396,7 +396,7 @@ crowd_version_tag = "5.1.3"
 # Make sure the snapshot is available in the region you are deploying to and it follows all product requirements.
 #
 # Crowd 5.1.3 DCAPT large dataset EBS snapshot
-crowd_shared_home_snapshot_id = "snap-0799b1778e63d824b"
+crowd_shared_home_snapshot_id = "snap-09540bd3f06c49bd0"
 
 # Database restore configuration
 # If you want to restore the database from a snapshot, uncomment the following line and provide the snapshot identifier.
@@ -405,8 +405,8 @@ crowd_shared_home_snapshot_id = "snap-0799b1778e63d824b"
 # Please also provide crowd_db_master_username and crowd_db_master_password that matches the ones in snapshot
 #
 # Crowd 5.1.3 DCAPT large dataset RDS snapshot
-crowd_db_snapshot_id           = "arn:aws:rds:us-east-2:585036043680:snapshot:dcapt-crowd-5-1-3"
-crowd_db_snapshot_build_number = "1892"
+crowd_db_snapshot_id           = "arn:aws:rds:us-east-2:585036043680:snapshot:crowd-514-test"
+crowd_db_snapshot_build_number = "1893"
 
 # Helm chart version of Crowd and Crowd agent instances. By default the latest version is installed.
 # crowd_helm_chart_version       = "<helm_chart_version>"
@@ -418,19 +418,19 @@ crowd_installation_timeout = 20
 
 # Crowd instance resource configuration
 crowd_cpu      = "2"
-crowd_mem      = "3Gi"
-crowd_min_heap = "1024m"
-crowd_max_heap = "1024m"
+crowd_mem      = "8Gi"
+crowd_min_heap = "2048m"
+crowd_max_heap = "2048m"
 
 # Storage
-crowd_local_home_size  = "10Gi"
-crowd_shared_home_size = "10Gi"
+crowd_local_home_size  = "15Gi"
+crowd_shared_home_size = "15Gi"
 
 # Crowd NFS instance resource configuration
 crowd_nfs_requests_cpu    = "1"
 crowd_nfs_requests_memory = "1Gi"
 crowd_nfs_limits_cpu      = "1"
-crowd_nfs_limits_memory   = "1Gi"
+crowd_nfs_limits_memory   = "2Gi"
 
 # RDS instance configurable attributes. Note that the allowed value of allocated storage and iops may vary based on instance type.
 # You may want to adjust these values according to your needs.
