@@ -13,9 +13,9 @@ RUN apt-get -y update \
   && python -m pip install --upgrade pip \
   && apt-get clean
 
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
-  && $APT_INSTALL ./google-chrome-stable_current_amd64.deb \
-  && rm -rf ./google-chrome-stable_current_amd64.deb
+RUN wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_115.0.5790.170-1_amd64.deb \
+  && $APT_INSTALL ./google-chrome-stable_115.0.5790.170-1_amd64.deb \
+  && rm -rf ./google-chrome-stable_115.0.5790.170-1_amd64.deb
 
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
