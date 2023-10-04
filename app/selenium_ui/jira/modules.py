@@ -150,6 +150,7 @@ def edit_issue(webdriver, datasets):
 
         sub_measure()
 
+        issue_page.set_resolution()
         issue_page.fill_summary_edit()  # edit summary
         issue_page.fill_description_edit(rte_status)  # edit description
 

@@ -3,6 +3,7 @@ from selenium_ui.conftest import retry
 import time
 import random
 import json
+from selenium.webdriver.common.by import By
 
 from selenium_ui.base_page import BasePage
 from selenium_ui.jira.pages.selectors import UrlManager, LoginPageLocators, DashboardLocators, PopupLocators, \
@@ -111,7 +112,10 @@ class Issue(BasePage):
         self.get_element(selector).send_keys(text)
 
     def edit_issue_submit(self):
-        self.get_element(IssueLocators.edit_issue_submit).click()
+        element = self.driver.find_element(By.ID, "issue-edit-submit")
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+        time.sleep(1)
+        element.click()
 
     def fill_description_edit(self, rte):
         text_description = f"Edit description form selenium - {self.generate_random_string(30)}"
