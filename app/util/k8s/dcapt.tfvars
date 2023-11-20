@@ -39,6 +39,7 @@ whitelist_cidr = ["0.0.0.0/0"]
 # Path to a JSON file with EBS and RDS snapshot IDs
 snapshots_json_file_path = "dcapt-snapshots.json"
 
+domain = "dc.atlassian-dev.net"
 # (optional) Custom tags for all resources to be created. Please add all tags you need to propagate among the resources.
 resource_tags = {Name: "dcapt-testing"}
 
