@@ -9,4 +9,4 @@ filelock==3.12.4
 packaging==23.1
 prettytable==3.9.0
 bzt==1.16.26
-boto3==1.28.56
+boto3==1.34.3
