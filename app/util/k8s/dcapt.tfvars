@@ -10,20 +10,20 @@
 # Unique name of your enterprise-scale test cluster.
 # This value can not be altered after the configuration has been applied.
 # ! REQUIRED !
-environment_name = "dcapt-product"
+environment_name = "charting-perf-tests"
 
 # Supported products: jira, confluence, bitbucket, crowd and bamboo.
 # For JSM set product as jira.
 # e.g.: products = ["jira"]
 # ! REQUIRED !
-products = ["product-to-deploy"]
+products = ["jira"]
 
 # License
 # To avoid storing license in a plain text file, we recommend storing it in an environment variable prefixed with `TF_VAR_` (i.e. `TF_VAR_jira_license`) and keep the below line commented out
 # If storing license as plain-text is not a concern for this environment, feel free to uncomment the following line and supply the license here.
 # ! IMPORTANT ! Please make sure valid license is used without spaces and new line symbols.
 # ! REQUIRED !
-jira_license = "jira-license"
+jira_license = "AAACCA0ODAoPeNqNk1Fv2jAQx9/zKSztZUNySIJaBlKk0cTrskKCksA0rXswyQGugh3ZDhvffiYBtR0dmpQX2/e/+93/Lu++QYlisUcDB7nu2LkZ37jofpYjz/E8ayMB+FbUNUh7ygrgCkjJNBPcJ3FO0nkaZcSKm90KZLJeKJDKx64VCK5poWO6A58qTdX2YD7+ieqKKsUotwuxs56YpPaFdt7IYksVhFSD7znuCDtD7H60TuXzQw1t3iCZzUgaRJPp+Yn8rpk8tLq56zlfzhhkRll1hSMDuQcZhf7dLFri1Ln3cDocTXAweFh2kLUUZVNo+3jASqz1LyrBNqnZHnwtG7gWZoBoAFyD7EKzZqUKyerWxfbmDZffarOt8e8p9Hq9OMnx5yTF8zQJF0EeJTFeZMQ8+IEE40uJVgekt4BOWRDhhShBIkP+BIVGP7Za14/jfn8j7Fcm9atOgaFT/LRRKBAXGpVMaclWjQaTmSmkBSoapcXOzNO2jPWmc055cTkewxWkZJKTEN99P0IajYbqoE3R80zNVKZRmJEYT93BaHB7O/SueX2xTW3sxQRI7P93ykxTeVSuaaXASuSGcqZoa/7k7JDV2muu/l7ak2tLQ3MUvP6hWqJaMnXaoRCe9+KrYUDZiQG9P3aAuhY+PI4R2dOqaQt25BebeGWLXhK81D3n7M5/AGEqbKMwLQIVAIGhKyPPM2ZK4yWWthGFszXWziMrAhQPrZpZ8MurfHmf42EG2hC3RgCAaQ==X02ok"
 confluence_license = "confluence-license"
 bitbucket_license = "bitbucket-license"
 crowd_license = "crowd-license"
@@ -54,7 +54,14 @@ whitelist_cidr = ["0.0.0.0/0"]
 snapshots_json_file_path = "dcapt-snapshots.json"
 
 # (optional) Custom tags for all resources to be created. Please add all tags you need to propagate among the resources.
-resource_tags = {Name: "dcapt-testing"}
+resource_tags = {
+ Name : "jira-9-12-0-DCAPTTF-JIRADEPSCALE912X-JOB9120DEP-7",
+ persist_days : "3.5",
+ business_unit : "Engineering-Enterprise DC",
+ creator : "platkowski",
+ resource_owner : "platkowski",
+ service_name : "dcapt"
+}
 
 # Instance types that is preferred for EKS node group.
 instance_types     = ["m5.2xlarge"]
@@ -108,11 +115,11 @@ jira_image_repository = "atlassian/jira-software"
 
 # Supported versions by DCAPT: https://github.com/atlassian/dc-app-performance-toolkit#supported-versions
 # Jira version
-jira_version_tag = "9.4.10"
+jira_version_tag = "9.12.0"
 
 # JSM version
 # ! REQUIRED for JSM !
-# jira_version_tag = "5.4.10"
+# jira_version_tag = "9.12.0"
 
 # Dataset size. Used only when snapshots_json_file_path is defined. Defaults to large.
 jira_dataset_size = "large"
@@ -484,3 +491,22 @@ bamboo_dataset_url = "https://centaurus-datasets.s3.amazonaws.com/bamboo/dcapt-b
 # Custom values file location. Defaults to an empty string which means only values from config.tfvars
 # are passed to Helm chart. Variables from config.tfvars take precedence over those defined in a custom values.yaml.
 # monitoring_custom_values_file = "/path/to/values.yaml"
+
+eks_additional_roles = [
+ {
+   rolearn = "arn:aws:iam::585036043680:role/Data-Center-Apps-Review"
+   username = "dcapt-role"
+   groups = ["system:masters"]
+ }
+]
+
+
+osquery_fleet_enrollment_host = "fleet-server.services.atlassian.com"
+osquery_fleet_enrollment_secret_name = "osquery-fleet-enrollment-secret-z5LpPg"
+osquery_fleet_enrollment_secret_region_aws = "us-east-2"
+osquery_env = "osquery_dcapt"
+
+kinesis_log_producers_role_arns = {
+  "eu"     = "arn:aws:iam::672543177425:role/pipeline-prod-log-producers-all",
+  "non-eu" = "arn:aws:iam::915926889391:role/pipeline-prod-log-producers-all"
+}
